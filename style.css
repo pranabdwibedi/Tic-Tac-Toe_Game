@@ -42,6 +42,7 @@
     border-radius: 20px;
     color: #b1d5db;
     background-color: #03045e;
+    font-size: medium;
 }
 #hiddenReset{
     visibility: hidden;
@@ -60,4 +61,5 @@
     border-radius: 20px;
     color: #b1d5db;
     background-color: #03045e;
+    font-size: medium;
 }

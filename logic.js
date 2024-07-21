@@ -40,7 +40,7 @@ checkWinner = () =>{
         if(pos1 != "" && pos2 != "" && pos3 != "")
             if(pos1 === pos2 && pos2 === pos3){
                 console.log(`winner is ${pos1}`);
-                msg[0].innerText = msg[0].textContent + `${pos1}`;
+                msg[0].innerText =  `Congtats the Winner is : ${pos1}`;
                 msg[0].setAttribute("class", "winMsg");
                 msg[1].setAttribute("class", "winMsg");
                 rstBtn.setAttribute("id", "hiddenReset");

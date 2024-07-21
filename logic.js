@@ -6,6 +6,9 @@ let newGame = document.querySelector("#newGame")
 
 //always first turn for player 'X'
 let currentPlayer = "X";
+//for counting the no of entries
+let count = 0;
+let isWinner = false;
 
 
 //These are the winning patterns to be a winner
@@ -41,6 +44,18 @@ newGame.addEventListener("click",resetingGame);
 rstBtn.addEventListener("click", resetingGame);
 
 
+DrawGame = () =>{
+    if(count == 9 && !isWinner){
+        msg[0].innerText =  "The match was Draw!";
+        //the winner msg and new game button will visible
+        msg[0].setAttribute("class", "winMsg");
+        msg[1].setAttribute("class", "winMsg");
+        //the reset button will hidden
+        rstBtn.setAttribute("id", "hiddenReset");
+    }
+}
+
+
 //It will check the current state with the winning pattern
 checkWinner = () =>{
     for(let pattern of winningPattern){
@@ -52,6 +67,7 @@ checkWinner = () =>{
         if(pos1 != "" && pos2 != "" && pos3 != "")
             if(pos1 === pos2 && pos2 === pos3){
                 //printing the winner message
+                isWinner = true;
                 msg[0].innerText =  `Congtats the Winner is : ${pos1}`;
                 //the winner msg and new game button will visible
                 msg[0].setAttribute("class", "winMsg");
@@ -66,15 +82,20 @@ checkWinner = () =>{
 boxes.forEach((box) =>{
     box.addEventListener("click", ()=>{
         if(currentPlayer === "X"){
-            box.innerText = "X";
+            box.style.color = "#553E4E";
+            box.innerHTML = "<b>X</b>";
             currentPlayer = "O";
+            count++;
         }
         else if(currentPlayer === "O"){
-            box.innerText = "O";
+            box.innerHTML = "<b>O</b>";
+            box.style.color = "#B9314F";
             currentPlayer = "X";
+            count++;
         }
         box.disabled = true;
         //after every entry it check wheather the winning pattern is matching or not
         checkWinner();
+        DrawGame();
     })
 })
